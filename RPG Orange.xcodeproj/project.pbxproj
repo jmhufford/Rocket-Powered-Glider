@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C74EF6602236115E009B3906 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF65F2236115E009B3906 /* main.cpp */; };
+		C74EF66D2236150D009B3906 /* JHFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF6672236122F009B3906 /* JHFilter.cpp */; };
+		C74EF67222361F64009B3906 /* JHGuidance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF67022361F64009B3906 /* JHGuidance.cpp */; };
+		C74EF67622370580009B3906 /* JHController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF67422370580009B3906 /* JHController.cpp */; };
+		C74EF677223777E9009B3906 /* JHPI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF6662236122F009B3906 /* JHPI.cpp */; };
+		C7A631B5223826FC00CA8CFC /* Globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7A631B4223826FC00CA8CFC /* Globals.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,18 @@
 /* Begin PBXFileReference section */
 		C74EF65C2236115E009B3906 /* RPG Orange */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "RPG Orange"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74EF65F2236115E009B3906 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C74EF6662236122F009B3906 /* JHPI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JHPI.cpp; sourceTree = "<group>"; };
+		C74EF6672236122F009B3906 /* JHFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JHFilter.cpp; sourceTree = "<group>"; };
+		C74EF6682236122F009B3906 /* JHFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHFilter.h; sourceTree = "<group>"; };
+		C74EF6692236122F009B3906 /* JHPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHPI.h; sourceTree = "<group>"; };
+		C74EF66C22361508009B3906 /* BasicLinearAlgebra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicLinearAlgebra.h; sourceTree = "<group>"; };
+		C74EF66E223615BE009B3906 /* MemoryDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemoryDelegate.h; sourceTree = "<group>"; };
+		C74EF66F223616FE009B3906 /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		C74EF67022361F64009B3906 /* JHGuidance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JHGuidance.cpp; sourceTree = "<group>"; };
+		C74EF67122361F64009B3906 /* JHGuidance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHGuidance.h; sourceTree = "<group>"; };
+		C74EF67422370580009B3906 /* JHController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JHController.cpp; sourceTree = "<group>"; };
+		C74EF67522370580009B3906 /* JHController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHController.h; sourceTree = "<group>"; };
+		C7A631B4223826FC00CA8CFC /* Globals.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Globals.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +58,8 @@
 		C74EF6532236115E009B3906 = {
 			isa = PBXGroup;
 			children = (
-				C74EF65E2236115E009B3906 /* RPG Orange */,
+				C74EF65E2236115E009B3906 /* RPG_Orange */,
+				C74EF67322362D4B009B3906 /* Not Used */,
 				C74EF65D2236115E009B3906 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +72,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C74EF65E2236115E009B3906 /* RPG Orange */ = {
+		C74EF65E2236115E009B3906 /* RPG_Orange */ = {
 			isa = PBXGroup;
 			children = (
 				C74EF65F2236115E009B3906 /* main.cpp */,
+				C74EF66F223616FE009B3906 /* Globals.h */,
+				C7A631B4223826FC00CA8CFC /* Globals.cpp */,
+				C74EF6682236122F009B3906 /* JHFilter.h */,
+				C74EF6672236122F009B3906 /* JHFilter.cpp */,
+				C74EF67122361F64009B3906 /* JHGuidance.h */,
+				C74EF67022361F64009B3906 /* JHGuidance.cpp */,
+				C74EF67522370580009B3906 /* JHController.h */,
+				C74EF67422370580009B3906 /* JHController.cpp */,
+				C74EF6692236122F009B3906 /* JHPI.h */,
+				C74EF6662236122F009B3906 /* JHPI.cpp */,
+				C74EF66E223615BE009B3906 /* MemoryDelegate.h */,
+				C74EF66C22361508009B3906 /* BasicLinearAlgebra.h */,
 			);
-			path = "RPG Orange";
+			path = RPG_Orange;
+			sourceTree = "<group>";
+		};
+		C74EF67322362D4B009B3906 /* Not Used */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Not Used";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A631B5223826FC00CA8CFC /* Globals.cpp in Sources */,
 				C74EF6602236115E009B3906 /* main.cpp in Sources */,
+				C74EF67222361F64009B3906 /* JHGuidance.cpp in Sources */,
+				C74EF66D2236150D009B3906 /* JHFilter.cpp in Sources */,
+				C74EF67622370580009B3906 /* JHController.cpp in Sources */,
+				C74EF677223777E9009B3906 /* JHPI.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
