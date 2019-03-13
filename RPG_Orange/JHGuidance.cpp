@@ -54,7 +54,8 @@ void JHGuidance::detectState(JHFilter& filter) {
                 newState = transition;
             break;
             
-        default: break;
+        default:
+            break;
     }
     
     if (newState != currentState) {
@@ -88,7 +89,8 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             commandPitch = -3.0;
             break;
             
-        default: break;
+        default:
+            break;
     }
 }
 

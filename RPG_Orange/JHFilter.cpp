@@ -50,7 +50,7 @@ JHFilter::JHFilter(){
 
 
 
-void JHFilter::begin(float hz, float RCV, float QCV){
+void JHFilter::begin(float hz, float RCV, float QCV) {
     float t = 1.0f / hz;
     
     I6 = z6.Fill(1);
@@ -83,7 +83,7 @@ void JHFilter::begin(float hz, float RCV, float QCV){
     
 }
 
-void JHFilter::zeroAngles(float ax,float ay,float az){
+void JHFilter::zeroAngles(float ax,float ay,float az) {
     float g = sqrt(ax*ax+ay*ay+az*az);
     float theta = asin(-ax/g);
     float phi = acos(az/(g*cos(theta)));
@@ -112,7 +112,7 @@ void JHFilter::logRPY() {
     std::cout << "Roll: " << getRoll() << ", Pitch: " << getPitch() << ", Yaw: " << getYaw() << "\n";
 }
 
-void JHFilter::updateIMU(float ax, float ay, float az, float p, float q, float r){
+void JHFilter::updateIMU(float ax, float ay, float az, float p, float q, float r) {
     
     z = {ax,ay,az,p,q,r};
     

@@ -7,21 +7,21 @@
 
 #include "JHPI.h"
 
-JHPI::JHPI(){
+JHPI::JHPI() {
 }
 
-JHPI::JHPI(float i, float p){
+JHPI::JHPI(float i, float p) {
     intError = 0;
     Ki = i;
     Kp = p;
 }
 
-void JHPI::begin(){
+void JHPI::begin() {
 
 
 }
 
-float JHPI::updatePI(float commanded, float actual){
+float JHPI::updatePI(float commanded, float actual) {
     
     float error = commanded - actual;
     intError = (error * Ki) + intError;
