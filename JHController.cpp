@@ -18,24 +18,30 @@ JHController::JHController() { //initialize needed PI objects during controller 
 }
 
 void JHController::pitchController(float pitchCommand, float currentPitch, float currentQ) { // two loop conrtoller for pitch
-    float qCommanded = pitchPI.updatePI(pitchCommand, currentPitch);
-    pitchBilly = qPI.updatePI(qCommanded, currentQ);
+    if (pitchCommand == g_Ignore) return;
+    
+    float qCommanded = pitchPI.update(pitchCommand, currentPitch);
+    pitchBilly = qPI.update(qCommanded, currentQ);
 }
 
 void JHController::headingController(float headingCommand, float currentHeading, float currentRoll, float currentP) { // heading controller outputs a roll command
-    float rollCommand = headingPI.updatePI(headingCommand, currentHeading);
+    if (headingCommand == g_Ignore) return;
+    
+    float rollCommand = headingPI.update(headingCommand, currentHeading);
     rollController(rollCommand, currentRoll, currentP);
 
 }
 
 void JHController::rollController(float rollCommand, float currentRoll, float currentP) { // two loop conrtoller for roll
-    float pCommanded = rollPI.updatePI(rollCommand, currentRoll);
-    rollBilly = pPI.updatePI(pCommanded, currentP);
+    if (rollCommand == g_Ignore) return;
+    
+    float pCommanded = rollPI.update(rollCommand, currentRoll);
+    rollBilly = pPI.update(pCommanded, currentP);
 }
 
-void JHController::calculateDelta(float g_Gain, float g_Trim) { // applying gains to output and
-    float d1 = rollBilly * g_Gain;
-    float d2 = pitchBilly * g_Gain;
+void JHController::calculateDelta(float gain) { // applying gains to output and
+    float d1 = rollBilly * gain;
+    float d2 = pitchBilly * gain;
     deltaRudder = d1 + g_Trim;
     deltaLeftElevator = (d1 - d2) + g_Trim;
     deltaRightElevator = (d1 + d2) + g_Trim;

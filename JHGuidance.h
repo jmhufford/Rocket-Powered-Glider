@@ -15,7 +15,7 @@
 enum GuidanceState
 {
     rc = 0,
-    setup,
+    standby,
     calibrate,
     boost,
     transition,
@@ -26,6 +26,15 @@ enum GuidanceState
 
 class JHGuidance {
 
+private:
+    float headingCommand;
+    float pitchCommand;
+    float rollCommand;
+    void detectState(JHFilter& filter);
+    void calulateGuidance(JHFilter& filter);
+    float initialHeading;
+    float initialPitch;
+
 public:
     JHGuidance();
     
@@ -35,19 +44,15 @@ public:
     
     // Calculated Outputs
     GuidanceState currentState = calibrate;
-    float commandHeading();
-    float commandPitch = 0.0f;
-    float autopilotGain = 0.0f;
+    
+    float getHeadingCommand();
+    float getRollCommand();
+    float getPitchCommand();
 
     // Autopilot sensitivity
 //    float gain();  // possibly 2 values for elevator and rudder
     
-private:
-    float initialHeading = 0.0f;
-    float initialPitch = 0.0f;
-    
-    void detectState(JHFilter& filter);
-    void calulateGuidance(JHFilter& filter);
+
     
 };
 

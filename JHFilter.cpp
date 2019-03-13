@@ -7,7 +7,7 @@
 
 #include "JHFilter.h"
 #include "BasicLinearAlgebra.h"
-#include <iostream>
+//#include <iostream>
 
 using namespace BLA;
 
@@ -24,7 +24,7 @@ template<int dim, class ElemT> struct Diagonal
             return (dummy = 0);
     }
 };
-
+//FIXME: need to fix matricies and math
 BLA::Matrix<6, 6, Diagonal<6, float> > z6;
 BLA::Matrix<12, 12, Diagonal<12, float> > z12;
 BLA::Matrix<6,6> I6;
@@ -109,7 +109,7 @@ void JHFilter::zeroAngles(float ax,float ay,float az) {
 }
 
 void JHFilter::logRPY() {
-    std::cout << "Roll: " << getRoll() << ", Pitch: " << getPitch() << ", Yaw: " << getYaw() << "\n";
+   // std::cout << "Roll: " << getRoll() << ", Pitch: " << getPitch() << ", Yaw: " << getYaw() << "\n";
 }
 
 void JHFilter::updateIMU(float ax, float ay, float az, float p, float q, float r) {

@@ -20,7 +20,7 @@ public:
     JHPI();
     JHPI(float i, float p);
     void begin();
-    float updatePI(float commanded, float actual);
+    float update(float commanded, float actual);
     
     
 };

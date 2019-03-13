@@ -21,7 +21,7 @@ void JHPI::begin() { //currently unused reset/start/adjust
 
 }
 
-float JHPI::updatePI(float commanded, float actual) {
+float JHPI::update(float commanded, float actual) {
     
     float error = commanded - actual; // finding error
     intError = (error * Ki) + intError; //tracking/calulating int component

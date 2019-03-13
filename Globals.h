@@ -37,4 +37,11 @@ extern const float g_rollKp;
 extern const float g_pKi;
 extern const float g_pKp;
 
+
+extern const float g_Ignore;
+extern const float g_Glide;
+extern const float g_Zero;
+extern const float g_GainGlide;
+extern const float g_GainBoost;
+
 #endif /* Globals_h */

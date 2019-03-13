@@ -29,9 +29,12 @@ private:
 public:
     JHController();
     void pitchController(float pitchCommand, float currentPitch, float currentQ); //update controller
+    
     void headingController(float headingCommand, float currentHeading, float currentRoll, float currentP);
+    
     void rollController(float rollCommand, float currentRoll, float currentP);
-    void calculateDelta(float g_Gain, float g_Trim);
+    
+    void calculateDelta(float gain);
 
     float rightElevator(); //get elevator commands
     float leftElevator();
