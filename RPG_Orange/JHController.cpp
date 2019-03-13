@@ -9,7 +9,7 @@
 #include "JHController.h"
 #include "Globals.h"
 
-JHController::JHController() {
+JHController::JHController() { //initialize needed PI objects during controller construction
     headingPI = JHPI(g_headingKi, g_headingKp);
     rollPI = JHPI(g_rollKi, g_rollKi);
     pPI = JHPI(g_pKi, g_pKi);
@@ -17,23 +17,23 @@ JHController::JHController() {
     pitchPI = JHPI(g_pitchKi, g_pitchKi);
 }
 
-void JHController::pitchController(float pitchCommand, float currentPitch, float currentQ) {
+void JHController::pitchController(float pitchCommand, float currentPitch, float currentQ) { // two loop conrtoller for pitch
     float qCommanded = pitchPI.updatePI(pitchCommand, currentPitch);
     pitchBilly = qPI.updatePI(qCommanded, currentQ);
 }
 
-void JHController::headingController(float headingCommand, float currentHeading, float currentRoll, float currentP) {
+void JHController::headingController(float headingCommand, float currentHeading, float currentRoll, float currentP) { // heading controller outputs a roll command
     float rollCommand = headingPI.updatePI(headingCommand, currentHeading);
     rollController(rollCommand, currentRoll, currentP);
 
 }
 
-void JHController::rollController(float rollCommand, float currentRoll, float currentP) {
+void JHController::rollController(float rollCommand, float currentRoll, float currentP) { // two loop conrtoller for roll
     float pCommanded = rollPI.updatePI(rollCommand, currentRoll);
     rollBilly = pPI.updatePI(pCommanded, currentP);
 }
 
-void JHController::calculateDelta(float g_Gain, float g_Trim) {
+void JHController::calculateDelta(float g_Gain, float g_Trim) { // applying gains to output and
     float d1 = rollBilly * g_Gain;
     float d2 = pitchBilly * g_Gain;
     deltaRudder = d1 + g_Trim;
@@ -42,7 +42,7 @@ void JHController::calculateDelta(float g_Gain, float g_Trim) {
     
     
 }
-
+//functions that return control surface deflections
 float JHController::rightElevator() {
     return deltaRightElevator;
 }

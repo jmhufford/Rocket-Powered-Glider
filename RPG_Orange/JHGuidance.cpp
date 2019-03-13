@@ -54,7 +54,7 @@ void JHGuidance::detectState(JHFilter& filter) {
                 newState = transition;
             break;
             
-        default:
+        default: // this is if in RC or there is other failure
             break;
     }
     
