@@ -13,6 +13,11 @@ private:
     float t;
     float RCV;
     float QCV;
+    const float g = 9.81;
+    float q0;
+    float q1;
+    float q2;
+    float q3;
 public:
     JHFilter(void);
     void begin(float hz, float RCV, float QCV);

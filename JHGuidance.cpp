@@ -73,7 +73,7 @@ void JHGuidance::detectState(JHFilter& filter) {
         default: // this is if in RC or there is other failure
             break;
     }
-    
+    newState = glide;
     if (newState != currentState) {
         // State Changed, is there anything to do
         currentState = newState;
@@ -92,7 +92,7 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             headingCommand = g_Ignore;
             rollCommand = g_Ignore;
             pitchCommand = g_Ignore;
-            g_Gain = g_Zero;
+            gain = g_Zero;
             break;
             
         case calibrate:
@@ -101,7 +101,7 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             headingCommand = g_Ignore;
             rollCommand = g_Ignore;
             pitchCommand = g_Ignore;
-            g_Gain = g_Zero;
+            gain = g_Zero;
             break;
 
         case boost: // control roll to zero and maintain current pitch
@@ -110,7 +110,7 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             headingCommand = g_Ignore;
             rollCommand = g_Zero;
             pitchCommand = initialPitch;
-            g_Gain = g_GainBoost; // TODO: find this
+            gain = g_GainBoost; // TODO: find this
             break;
 
         case transition:
@@ -120,7 +120,7 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             headingCommand = g_Ignore;
             rollCommand = g_Zero;
             pitchCommand = g_Ignore;  //TODO: find a way to step this
-            g_Gain = g_Zero; // TODO: find this
+            gain = g_Zero; // TODO: find this
             break;
 
         case glide: //maintain optimal glide angle
@@ -128,7 +128,7 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             headingCommand = initialHeading;
             rollCommand = g_Ignore;
             pitchCommand = g_Glide; //TODO: find this value
-            g_Gain = g_GainGlide; // TODO: find this
+            gain = g_GainGlide; // TODO: find this
             break;
             
         case landed:
@@ -136,14 +136,14 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             headingCommand = g_Ignore;
             rollCommand = g_Ignore;
             pitchCommand = g_Ignore;
-            g_Gain = g_Zero;
+            gain = g_Zero;
             break;
             
         default:
             headingCommand = g_Ignore;
             rollCommand = g_Ignore;
             pitchCommand = g_Ignore;
-            g_Gain = g_Zero;
+            gain = g_Zero;
             break;
     }
 }
@@ -158,4 +158,7 @@ float JHGuidance::getRollCommand() {
 
 float JHGuidance::getPitchCommand() {
     return pitchCommand;
+}
+float JHGuidance::getGainCommand() {
+    return gain;
 }

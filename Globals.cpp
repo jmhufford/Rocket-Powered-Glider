@@ -24,7 +24,6 @@ const float g_QCV = .01;
 
 //Controller scalers
  const float g_Trim = 90;
- float g_Gain = 0;
 //pitch
 const float g_pitchKi = 1;
 const float g_pitchKp = 1;

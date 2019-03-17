@@ -20,7 +20,6 @@ extern const float g_QCV;
 
 //Controller scalers
 extern const float g_Trim;
-extern float g_Gain;
 //pitch
 extern const float g_pitchKi;
 extern const float g_pitchKp;

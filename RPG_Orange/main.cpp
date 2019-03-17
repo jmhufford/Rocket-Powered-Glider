@@ -45,7 +45,7 @@ void loop() {
     controller.headingController(guidance.getHeadingCommand(), filter.getYaw(), filter.getRoll(), filter.getP());
     controller.rollController(guidance.getRollCommand(), filter.getRoll(), filter.getP());
     controller.pitchController(guidance.getPitchCommand(), filter.getPitch(), filter.getQ());
-    controller.calculateDelta(g_Gain);
+    controller.calculateDelta(guidance.getGainCommand());
     
     
     if (manualOverride) {

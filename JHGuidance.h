@@ -34,6 +34,7 @@ private:
     void calulateGuidance(JHFilter& filter);
     float initialHeading;
     float initialPitch;
+    float gain;
 
 public:
     JHGuidance();
@@ -48,7 +49,7 @@ public:
     float getHeadingCommand();
     float getRollCommand();
     float getPitchCommand();
-
+    float getGainCommand();
     // Autopilot sensitivity
 //    float gain();  // possibly 2 values for elevator and rudder
     
