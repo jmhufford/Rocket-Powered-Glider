@@ -11,7 +11,7 @@
 
 
 
-const float g_ReadRateHz = 25;    // read rate
+const float g_ReadRateHz = 50;    // read rate
 const float t = 1/g_ReadRateHz;   //read rate in sec
 
 

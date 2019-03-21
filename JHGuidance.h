@@ -44,7 +44,7 @@ public:
     void logSelf();
     
     // Calculated Outputs
-    GuidanceState currentState = calibrate;
+    GuidanceState currentState = standby;
     
     float getHeadingCommand();
     float getRollCommand();

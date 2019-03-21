@@ -6,7 +6,7 @@
 //
 
 #include "JHPI.h"
-
+#include "Globals.h"
 JHPI::JHPI() { //default
 }
 
@@ -24,14 +24,10 @@ void JHPI::begin() { //currently unused reset/start/adjust
 float JHPI::update(float commanded, float actual) {
     
     float error = commanded - actual; // finding error
-    intError = (error * Ki) + intError; //tracking/calulating int component
-    output = (Kp * error) + intError; //adding on proportional component
+    intError = (error * t) + intError; //tracking/calulating int component
+    output = (Kp * error) + (Ki*intError); //adding on proportional component
     
     return output; //returning PI output
 }
-
-
-
-
 
 

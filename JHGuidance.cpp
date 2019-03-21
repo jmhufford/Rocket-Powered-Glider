@@ -73,7 +73,7 @@ void JHGuidance::detectState(JHFilter& filter) {
         default: // this is if in RC or there is other failure
             break;
     }
-    newState = glide;
+    
     if (newState != currentState) {
         // State Changed, is there anything to do
         currentState = newState;
