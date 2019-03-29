@@ -30,6 +30,8 @@ private:
     float mx=0;
     float my=0;
     float mz=0;
+    float rad2deg(float rad);
+    float deg2rad(float deg);
 public:
     
     JHFilter(void);
