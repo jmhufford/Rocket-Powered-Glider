@@ -7,6 +7,7 @@
 
 #ifndef JHFilter_h
 #define JHFilter_h
+#define M_PI 3.1415926535
 
 class JHFilter{
 private:

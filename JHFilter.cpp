@@ -111,23 +111,6 @@ void JHFilter::zeroAngles(float aix, float aiy, float aiz) {
         q4
     };
     
-    //initial conditions
- /*   X = {
-        0, //u
-        0, //v
-        0, //w
-        180*phi/3.141592, //roll
-        180*theta/3.141592, //pitch
-        0, //yaw
-        ax, //ax
-        ay, //ay
-        az, //az
-        0, //p
-        0, //q
-        0, //r
-    };
-*/
-    
 
 }
 
@@ -147,14 +130,14 @@ void JHFilter::updateIMU(float aix, float aiy, float aiz, float gip, float giq, 
     
     V = {ax,ay,az,p,q,r};
     
-    p = p * 3.141592 / 180;
-    q = q * 3.141592 / 180;
-    r = r * 3.141592 / 180;
+    p = deg2rad(p);
+    q = deg2rad(q);
+    r = deg2rad(r);
     
     z = {ax,ay,az,mx,my,mz};
-    
+    // this is for normalizing
     Hn = z4.Fill(1/sqrt((X(0))*(X(0))+(X(1))*(X(1))+(X(2))*(X(2))+(X(3))*(X(3))));
-    
+    //entries go left to right, top to bottom
     H = {
         ((2*X(2))-(2*(X(0)*X(2)-X(1)*X(3))*X(0)))*g,
         ((2*-X(3))-(2*(X(0)*X(2)-X(1)*X(3))*X(1)))*g,
@@ -189,7 +172,7 @@ void JHFilter::updateIMU(float aix, float aiy, float aiz, float gip, float giq, 
 
     };
 
-    H = H * Hn;
+    H = H * Hn; // applying normilzation
     
     
     F = {
@@ -202,6 +185,8 @@ void JHFilter::updateIMU(float aix, float aiy, float aiz, float gip, float giq, 
 
     
      Xpriori = F * X;
+    
+    //preventing the quterniums getting too big
     /*
      Xpriori = {clip(Xpriori(0)),
                 clip(Xpriori(1)),
@@ -223,13 +208,14 @@ void JHFilter::updateIMU(float aix, float aiy, float aiz, float gip, float giq, 
         (2*HX*(Xpriori(0)*Xpriori(1)-Xpriori(2)*Xpriori(3)))+(HY*(-(Xpriori(0)*Xpriori(0))+(Xpriori(1)*Xpriori(1))-(Xpriori(2)*Xpriori(2))+(Xpriori(3)*Xpriori(3)))+(2*HZ*(Xpriori(1)*Xpriori(2)+Xpriori(0)*Xpriori(3)))),
         (2*HX*(Xpriori(0)*Xpriori(2)+Xpriori(1)*Xpriori(3)))+(2*HY*(Xpriori(1)*Xpriori(2)-Xpriori(0)*Xpriori(3)))+(HZ*(-(Xpriori(0)*Xpriori(0))-(Xpriori(1)*Xpriori(1))+(Xpriori(2)*Xpriori(2))+(Xpriori(3)*Xpriori(3))))
     };
-
+    // this is for normalizing
     hn = {1/sqrt((Xpriori(0))*(Xpriori(0))+(Xpriori(1))*(Xpriori(1))+(Xpriori(2))*(Xpriori(2))+(X(3))*(Xpriori(3)))};
     
-    h = h * hn;
+    h = h * hn; // applying normilzation
     
     X = Xpriori + K * (z - h);
    
+    //preventing the quterniums getting too big
     X = {clip(X(0)),
         clip(X(1)),
         clip(X(2)),
@@ -241,6 +227,13 @@ void JHFilter::updateIMU(float aix, float aiy, float aiz, float gip, float giq, 
     
 }
 
+float JHFilter::rad2deg(float rad) {
+    return (rad / M_PI) * 180;
+}
+
+float JHFilter::deg2rad(float deg) {
+    return (deg * M_PI) / 180;
+}
 
 
 float JHFilter::clip(float n) {
@@ -252,7 +245,7 @@ float JHFilter::clip(float n) {
 float JHFilter::getRoll(){
     float roll = atan2(2 * (X(3) * X(0) + X(1) * X(2)), 1 - 2 * (X(0) * X(0) + X(1) * X(1)));
     
-    return roll * 180 / 3.141592;
+    return rad2deg(roll);
 }
 float JHFilter::getPitch(){
     float pitch = asin(2 * (X(3) * X(1) - X(0) * X(2)));
@@ -260,13 +253,15 @@ float JHFilter::getPitch(){
     if (2 * (X(3) * X(1) - X(0) * X(2))<-1) {
         pitch = -3.141592/2;
     }
-    
-    return pitch * 180 / 3.141592;
+    if (2 * (X(3) * X(1) - X(0) * X(2))>1) {
+        pitch = 3.141592/2;
+    }
+    return rad2deg(pitch);
 }
 float JHFilter::getYaw(){
     float yaw = atan2(2 * (X(3) * X(2) + X(0) * X(1)), 1 - 2 * (X(1) * X(1) + X(2) * X(2)));
     
-    return yaw * 180 / 3.141592;
+    return rad2deg(yaw);
 }
 
 float JHFilter::getAx(){
