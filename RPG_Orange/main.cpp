@@ -19,7 +19,6 @@ JHController controller;
 bool manualOverride;
 
 void setup2() {
-    
     manualOverride = false;
 //    filter.begin(20, 1, 1);
     filter.begin(g_ReadRateHz, g_RCV, g_QCV);
@@ -35,14 +34,12 @@ void loop() {
     
 //    filter.updateIMU(0, 0, 1, 0, 0, 0);
     filter.updateIMU(10, 0, 1, 0, 100, 0);
-    filter.logRPY();
     
     guidance.inputData(filter);
     guidance.logSelf();
     
     // feed guidance commands into Autopilot
-    
-    controller.headingController(guidance.getHeadingCommand(), filter.getYaw(), filter.getRoll(), filter.getP());
+ 
     controller.rollController(guidance.getRollCommand(), filter.getRoll(), filter.getP());
     controller.pitchController(guidance.getPitchCommand(), filter.getPitch(), filter.getQ());
     controller.calculateDelta(guidance.getGainCommand());

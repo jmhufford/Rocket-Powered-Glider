@@ -8,8 +8,6 @@
 
 #ifndef JHGuidance_h
 #define JHGuidance_h
-
-//#include <stdio.h>
 #include "JHFilter.h"
 
 enum GuidanceState
@@ -20,7 +18,6 @@ enum GuidanceState
     boost,
     transition,
     glide,
-//    flare,
     landed
 };
 
@@ -35,7 +32,7 @@ private:
     float initialHeading;
     float initialPitch;
     float gain;
-
+    float count;
 public:
     JHGuidance();
     
@@ -50,11 +47,7 @@ public:
     float getRollCommand();
     float getPitchCommand();
     float getGainCommand();
-    // Autopilot sensitivity
-//    float gain();  // possibly 2 values for elevator and rudder
-    
-
-    
+    float getState();
 };
 
 #endif /* JHGuidance_h */

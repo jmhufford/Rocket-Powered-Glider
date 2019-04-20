@@ -17,20 +17,21 @@ private:
     float deltaRightElevator;
     float deltaLeftElevator;
     float deltaRudder;
-    float pitchBilly;
-    float rollBilly;
-    JHPI headingPI;
+    float pitchInt;
+    float rollInt;
+    float headingInt;
+    JHPI pitchPI;
+    JHPI qPI;
     JHPI rollPI;
     JHPI pPI;
-    JHPI qPI;
-    JHPI pitchPI;
-   
+    JHPI headingPI;
+    JHPI rPI;
     
 public:
     JHController();
     void pitchController(float pitchCommand, float currentPitch, float currentQ); //update controller
     
-    void headingController(float headingCommand, float currentHeading, float currentRoll, float currentP);
+    void headingController(float headingCommand, float currentR);
     
     void rollController(float rollCommand, float currentRoll, float currentP);
     

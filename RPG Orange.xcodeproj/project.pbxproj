@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70B5A9D2251546A00FDAAB0 /* JHLowpass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C70B5A9C2251546900FDAAB0 /* JHLowpass.cpp */; };
 		C74EF6602236115E009B3906 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF65F2236115E009B3906 /* main.cpp */; };
 		C74EF66D2236150D009B3906 /* JHFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF6672236122F009B3906 /* JHFilter.cpp */; };
 		C74EF67222361F64009B3906 /* JHGuidance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C74EF67022361F64009B3906 /* JHGuidance.cpp */; };
@@ -28,6 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C70B5A9C2251546900FDAAB0 /* JHLowpass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JHLowpass.cpp; sourceTree = "<group>"; };
+		C70B5A9E225154B900FDAAB0 /* JHLowpass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHLowpass.h; sourceTree = "<group>"; };
 		C74EF65C2236115E009B3906 /* RPG Orange */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "RPG Orange"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74EF65F2236115E009B3906 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = RPG_Orange/main.cpp; sourceTree = SOURCE_ROOT; };
 		C74EF6662236122F009B3906 /* JHPI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JHPI.cpp; sourceTree = SOURCE_ROOT; };
@@ -68,6 +71,8 @@
 				C74EF67422370580009B3906 /* JHController.cpp */,
 				C74EF6692236122F009B3906 /* JHPI.h */,
 				C74EF6662236122F009B3906 /* JHPI.cpp */,
+				C70B5A9E225154B900FDAAB0 /* JHLowpass.h */,
+				C70B5A9C2251546900FDAAB0 /* JHLowpass.cpp */,
 				C74EF66E223615BE009B3906 /* MemoryDelegate.h */,
 				C74EF66C22361508009B3906 /* BasicLinearAlgebra.h */,
 				C74EF65E2236115E009B3906 /* RPG_Orange */,
@@ -160,6 +165,7 @@
 				C74EF67222361F64009B3906 /* JHGuidance.cpp in Sources */,
 				C74EF66D2236150D009B3906 /* JHFilter.cpp in Sources */,
 				C74EF67622370580009B3906 /* JHController.cpp in Sources */,
+				C70B5A9D2251546A00FDAAB0 /* JHLowpass.cpp in Sources */,
 				C74EF677223777E9009B3906 /* JHPI.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

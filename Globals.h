@@ -29,18 +29,20 @@ extern const float g_qKp;
 //roll
 extern const float g_headingKi;
 extern const float g_headingKp;
-//bank
-extern const float g_rollKi;
-extern const float g_rollKp;
 //p
 extern const float g_pKi;
 extern const float g_pKp;
-
+//bank
+extern const float g_rollKi;
+extern const float g_rollKp;
+//r
+extern const float g_rKi;
+extern const float g_rKp;
 
 extern const float g_Ignore;
 extern const float g_Glide;
 extern const float g_Zero;
 extern const float g_GainGlide;
 extern const float g_GainBoost;
-
+extern const float g_Launch;
 #endif /* Globals_h */

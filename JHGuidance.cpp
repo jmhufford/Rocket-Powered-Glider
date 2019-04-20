@@ -32,21 +32,21 @@ void JHGuidance::detectState(JHFilter& filter) {
     GuidanceState newState = currentState;
     
     switch (currentState) {
-            
-
-
+        
         case standby:
             //have craft sit idle until it is no longer being re adjusted
+            if (filter.getP() < 1 && filter.getR() < 1) {
+                newState = calibrate;
+                count = 0;
+            }
             break;
             
         case calibrate: //capture starting angles and heading and watch for boost or rerurn to setup
             // if Accelerating we change states...
-            if (filter.getAx() > 0.05)
+            if (filter.getAx() < -15)
                 newState = boost;
-            
             else {
                 // always capture the current heading and pitch from the Filter
-                
                 initialHeading = filter.getYaw();
                 initialPitch = filter.getPitch();
             }
@@ -54,23 +54,36 @@ void JHGuidance::detectState(JHFilter& filter) {
 
         case boost:
             // if AccelX goes down + other indicators?
-            if (filter.getAx() < 0.4)
+            if (filter.getAx() > -5) {
                 newState = transition;
+                count = 0;}
             break;
             
         case transition:
             //if pitch is about level transition too glide
-            if (filter.getPitch() < 5)
-                newState = glide;
+            if (filter.getPitch() < 5) {
+                count += 1;
+                if (count >= 100) {
+                    newState = glide;
+                    count = 0;
+                }
+            }
             break;
         
         case glide:
+            if (filter.getP() < 0.05 && filter.getQ() < 0.05) {
+                count += 1;
+                if (count >= 100000) {
+                    newState = landed;
+                    count = 0;
+                }
+            }
             break;
             
         case landed:
             break;
             
-        default: // this is if in RC or there is other failure
+        default:
             break;
     }
     
@@ -81,14 +94,10 @@ void JHGuidance::detectState(JHFilter& filter) {
 }
 
 void JHGuidance::calulateGuidance(JHFilter& filter) {
-
-    // TODO: based on the current state, calculate the desired pitch, and autopilot gain...
     //IMPORTANT: If not controlling value set command to g_Ignore
     switch (currentState) {
             
         case standby:
-            
-            
             headingCommand = g_Ignore;
             rollCommand = g_Ignore;
             pitchCommand = g_Ignore;
@@ -96,8 +105,6 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             break;
             
         case calibrate:
-            
-            
             headingCommand = g_Ignore;
             rollCommand = g_Ignore;
             pitchCommand = g_Ignore;
@@ -105,34 +112,28 @@ void JHGuidance::calulateGuidance(JHFilter& filter) {
             break;
 
         case boost: // control roll to zero and maintain current pitch
-            
-            
             headingCommand = g_Ignore;
             rollCommand = g_Zero;
-            pitchCommand = initialPitch;
+            pitchCommand = g_Launch;
             gain = g_GainBoost; // TODO: find this
             break;
 
         case transition:
             // pitch will step from starting to level
-           
-            
             headingCommand = g_Ignore;
             rollCommand = g_Zero;
-            pitchCommand = g_Ignore;  //TODO: find a way to step this
+            pitchCommand = g_Launch;  //TODO: find a way to step this
             gain = g_Zero; // TODO: find this
             break;
 
         case glide: //maintain optimal glide angle
-            
-            headingCommand = initialHeading;
-            rollCommand = g_Ignore;
+            headingCommand = g_Ignore;
+            rollCommand = g_Zero;
             pitchCommand = g_Glide; //TODO: find this value
             gain = g_GainGlide; // TODO: find this
             break;
             
         case landed:
-            
             headingCommand = g_Ignore;
             rollCommand = g_Ignore;
             pitchCommand = g_Ignore;
@@ -159,6 +160,10 @@ float JHGuidance::getRollCommand() {
 float JHGuidance::getPitchCommand() {
     return pitchCommand;
 }
+
 float JHGuidance::getGainCommand() {
     return gain;
+}
+float JHGuidance::getState() {
+    return currentState;
 }

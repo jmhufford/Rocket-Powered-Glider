@@ -13,15 +13,14 @@ private:
     float intError;
     float Ki;
     float Kp;
-
     float output;
     
 public:
     JHPI();
     JHPI(float i, float p);
-    void begin();
+    void cap(float d);
     float update(float commanded, float actual);
-    
+    float d;
     
 };
 
